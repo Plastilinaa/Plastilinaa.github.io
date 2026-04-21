@@ -10,15 +10,12 @@
     <header class="header">
         <div class="header-content">
             <h1>Hospital Ejemplo</h1>
-            <div class="live-ticket">
-                Turno actual en ventanilla: <strong id="current-ticket">8</strong>
-            </div>
         </div>
     </header>
 
     <main class="container">
         <h2>Nuestras Especialidades</h2>
-        <p>Seleccione una especialidad para ver nuestros profesionales disponibles.</p>
+        <p>Seleccione una especialidad para ver nuestros profesionales.</p>
         
         <div id="specialties-container" class="specialties-container">
             </div>
@@ -28,32 +25,27 @@
         <div class="modal-content">
             <span id="close-modal" class="close">&times;</span>
             <h2 id="modal-doctor-name">Nombre del Doctor</h2>
-            <p class="modal-subtitle">Reserva de turno presencial</p>
+            
+            <div class="doctor-live-status">
+                Atendiendo ahora: <strong id="doctor-now-serving">--</strong>
+            </div>
 
             <div class="form-group">
-                <label for="appointment-date">Seleccione una fecha:</label>
+                <label for="appointment-date">Fecha:</label>
                 <input type="date" id="appointment-date">
             </div>
 
-            <h3>Horarios</h3>
-            <div id="time-slots" class="time-slots">
-                </div>
+            <h3>Horarios disponibles</h3>
+            <div id="time-slots" class="time-slots"></div>
 
             <div class="action-section">
                 <button id="book-btn" class="btn-primary" disabled>Pedir Turno</button>
             </div>
 
-            <div id="result-message" class="result-message hidden">
-                </div>
+            <div id="result-message" class="result-message hidden"></div>
         </div>
     </div>
 
     <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
-
-
