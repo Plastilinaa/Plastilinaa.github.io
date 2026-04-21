@@ -176,3 +176,6 @@ setInterval(() => {
     if (currentTicket > 99) currentTicket = 1; // Reiniciar si llega a 100
     currentTicketDisplay.textContent = currentTicket;
 }, Math.floor(Math.random() * 10000) + 5000);
+
+
+
