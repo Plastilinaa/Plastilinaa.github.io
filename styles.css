@@ -1,238 +1,47 @@
-/* Variables de colores */
 :root {
-    --bg-color: #f8f9fa; /* Blanco no puro */
-    --primary-blue: #0056b3;
-    --light-blue: #e0f2fe;
-    --text-dark: #333333;
-    --border-color: #d1d5db;
+    --bg-color: #f9fafb;
+    --primary-blue: #0284c7;
+    --celeste: #e0f2fe;
+    --text-dark: #1f2937;
 }
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+body { background-color: var(--bg-color); color: var(--text-dark); line-height: 1.6; }
 
-body {
-    background-color: var(--bg-color);
-    color: var(--text-dark);
-}
+.header { background-color: var(--primary-blue); color: white; padding: 1rem; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+.container { max-width: 700px; margin: 2rem auto; padding: 0 1rem; }
 
-.header {
-    background-color: var(--primary-blue);
-    color: white;
-    padding: 1.5rem 2rem;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-}
-
-.header-content {
-    max-width: 800px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.live-ticket {
-    background-color: rgba(255, 255, 255, 0.2);
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    font-size: 1.1rem;
-}
-
-#current-ticket {
-    font-size: 1.4rem;
-    color: #ffd700; /* Toque dorado para resaltar */
-}
-
-.container {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 0 1rem;
-}
-
-.specialties-container {
-    margin-top: 1.5rem;
-}
-
-/* Estilos de la lista (Acordeón) */
-.specialty-item {
-    background-color: white;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    margin-bottom: 1rem;
-    overflow: hidden;
-}
-
-.specialty-header {
-    padding: 1rem 1.5rem;
-    background-color: white;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 1.1rem;
-    transition: background-color 0.2s;
+/* Estilo del turno en tiempo real dentro del modal */
+.doctor-live-status {
+    background-color: var(--celeste);
     color: var(--primary-blue);
-}
-
-.specialty-header:hover {
-    background-color: var(--light-blue);
-}
-
-.doctors-list {
-    display: none;
-    list-style: none;
-    border-top: 1px solid var(--border-color);
-    background-color: #fafafa;
-}
-
-.doctors-list li {
-    padding: 0.8rem 1.5rem;
-    cursor: pointer;
-    border-bottom: 1px solid #eee;
-    transition: background-color 0.2s, padding-left 0.2s;
-}
-
-.doctors-list li:hover {
-    background-color: var(--light-blue);
-    padding-left: 2rem;
-    color: var(--primary-blue);
-}
-
-.doctors-list li:last-child {
-    border-bottom: none;
-}
-
-/* Ventana Modal */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-
-.modal-content {
-    background-color: white;
-    margin: 5% auto;
-    padding: 2rem;
-    border-radius: 12px;
-    width: 90%;
-    max-width: 500px;
-    position: relative;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-}
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.close:hover {
-    color: black;
-}
-
-.modal-subtitle {
-    color: #666;
-    margin-bottom: 1.5rem;
-}
-
-.form-group {
-    margin-bottom: 1.5rem;
-}
-
-.form-group input {
-    width: 100%;
-    padding: 0.5rem;
-    margin-top: 0.5rem;
-    border: 1px solid var(--border-color);
-    border-radius: 4px;
-}
-
-.time-slots {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
-    gap: 10px;
-    margin-top: 1rem;
-    max-height: 200px;
-    overflow-y: auto;
-    padding-bottom: 10px;
-}
-
-.slot {
-    padding: 0.5rem;
-    text-align: center;
-    border: 1px solid var(--primary-blue);
-    border-radius: 4px;
-    cursor: pointer;
-    background-color: white;
-    color: var(--primary-blue);
-    transition: 0.2s;
-}
-
-.slot:hover:not(.occupied) {
-    background-color: var(--light-blue);
-}
-
-.slot.selected {
-    background-color: var(--primary-blue);
-    color: white;
-}
-
-.slot.occupied {
-    background-color: #e5e7eb;
-    border-color: #d1d5db;
-    color: #9ca3af;
-    cursor: not-allowed;
-    text-decoration: line-through;
-}
-
-.action-section {
-    margin-top: 1.5rem;
-    text-align: right;
-}
-
-.btn-primary {
-    background-color: var(--primary-blue);
-    color: white;
-    border: none;
-    padding: 0.8rem 1.5rem;
-    border-radius: 6px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.2s;
-}
-
-.btn-primary:hover:not(:disabled) {
-    background-color: #004494;
-}
-
-.btn-primary:disabled {
-    background-color: #9ca3af;
-    cursor: not-allowed;
-}
-
-.result-message {
-    margin-top: 1.5rem;
-    padding: 1rem;
-    background-color: var(--light-blue);
-    color: var(--primary-blue);
+    padding: 0.8rem;
     border-radius: 8px;
     text-align: center;
-    font-size: 1.2rem;
-    font-weight: bold;
+    font-size: 1.1rem;
+    margin: 1rem 0;
+    border: 1px solid #bae6fd;
 }
+#doctor-now-serving { font-size: 1.4rem; font-weight: bold; }
 
-.hidden {
-    display: none;
-}
+/* Lista de Especialidades */
+.specialty-item { background: white; border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 0.5rem; }
+.specialty-header { padding: 1rem; cursor: pointer; font-weight: 600; color: var(--primary-blue); }
+.doctors-list { display: none; list-style: none; background: #fefefe; border-top: 1px solid #e5e7eb; }
+.doctors-list li { padding: 0.8rem 1.5rem; cursor: pointer; border-bottom: 1px solid #f3f4f6; }
+.doctors-list li:hover { background: var(--celeste); }
 
+/* Modal */
+.modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
+.modal-content { background: white; margin: 10% auto; padding: 2rem; width: 90%; max-width: 450px; border-radius: 12px; position: relative; }
+.close { position: absolute; top: 10px; right: 20px; font-size: 1.5rem; cursor: pointer; }
 
+.time-slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 1rem 0; }
+.slot { padding: 0.5rem; border: 1px solid var(--primary-blue); border-radius: 4px; text-align: center; cursor: pointer; }
+.slot.selected { background: var(--primary-blue); color: white; }
+.slot.occupied { background: #f3f4f6; border-color: #d1d5db; color: #9ca3af; cursor: not-allowed; }
 
-
+.btn-primary { width: 100%; background: var(--primary-blue); color: white; border: none; padding: 1rem; border-radius: 6px; cursor: pointer; }
+.btn-primary:disabled { background: #9ca3af; }
+.result-message { margin-top: 1rem; padding: 1rem; background: #dcfce7; color: #166534; border-radius: 6px; text-align: center; }
+.hidden { display: none; }
